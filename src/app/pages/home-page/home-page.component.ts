@@ -1,4 +1,4 @@
-import { afterNextRender, afterRender, Component, effect, OnChanges, OnInit } from '@angular/core';
+import { afterNextRender, afterRender, Component, effect, OnChanges, OnInit, signal } from '@angular/core';
 
 const log = (...messages: string[]) => {
   console.log(
@@ -16,8 +16,26 @@ export class HomePageComponent implements OnInit, OnChanges {
   //El implements es importante para asegurarnos que esté el ciclo de vida implementado correctamente ya que si no angular se quejará,
   //pero no es obligatorio
 
+  traditionalProperty = 'Fernando';
+  signalProperty = signal('Fernando');
+
   constructor(){
     log('constructor llamado');
+
+    setTimeout(() => {
+      this.traditionalProperty = 'Pedro'; //Como estamos en zoneless esto ya no cambia el texto en la plantilla, aunque cuando se llama tambien a la signal si ya que detecta cambios y los aplica a todos, deberiamos trabajar solo con señales para evitar falsos positivos
+      this.signalProperty.set('Juan Carlos');
+      console.log('hecho');
+    }, 2000);
+
+  }
+
+  changeTraditional(){
+    this.traditionalProperty = 'Fernando Herrera';
+  }
+
+  changeSignal(){
+    this.signalProperty.set('Fernando Herrera');
   }
 
   basicEffect = effect((onCleanup) => {
