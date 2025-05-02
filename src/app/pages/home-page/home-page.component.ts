@@ -1,4 +1,5 @@
 import { afterNextRender, afterRender, Component, effect, OnChanges, OnInit, signal } from '@angular/core';
+import { TitleComponent } from '../../components/title/title.component';
 
 const log = (...messages: string[]) => {
   console.log(
@@ -8,7 +9,7 @@ const log = (...messages: string[]) => {
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [TitleComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent implements OnInit, OnChanges {
@@ -23,9 +24,9 @@ export class HomePageComponent implements OnInit, OnChanges {
     log('constructor llamado');
 
     setTimeout(() => {
-      this.traditionalProperty = 'Pedro'; //Como estamos en zoneless esto ya no cambia el texto en la plantilla, aunque cuando se llama tambien a la signal si ya que detecta cambios y los aplica a todos, deberiamos trabajar solo con señales para evitar falsos positivos
-      this.signalProperty.set('Juan Carlos');
-      console.log('hecho');
+      // this.traditionalProperty = 'Pedro'; //Como estamos en zoneless esto ya no cambia el texto en la plantilla, aunque cuando se llama tambien a la signal si ya que detecta cambios y los aplica a todos, deberiamos trabajar solo con señales para evitar falsos positivos
+      // this.signalProperty.set('Juan Carlos');
+      // console.log('hecho');
     }, 2000);
 
   }

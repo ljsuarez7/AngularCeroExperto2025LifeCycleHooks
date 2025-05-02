@@ -6,3 +6,16 @@
 
 <button class="btn btn-primary" (click)="changeTraditional()">Cambiar Tradicional</button>
 <button class="btn btn-primary" (click)="changeSignal()">Cambiar Señal</button>
+
+<app-title
+  [title]="traditionalProperty"
+  [title2]="traditionalProperty"
+  [title3]="traditionalProperty"
+  [title4]="traditionalProperty"
+/>
+<app-title
+  [title]="signalProperty()"
+  [title2]="signalProperty()"
+  [title3]="signalProperty()"
+  [title4]="signalProperty()"
+/>
